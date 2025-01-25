@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami/app_theme.dart';
 import 'package:islami/home/home_screen.dart';
 import 'package:islami/splash_screen.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (context) => SplashScreen(),
         HomeScreen.routeName: (context) => HomeScreen(),
       },
+      theme : AppTheme.lightTheme,
     );
   }
 }
