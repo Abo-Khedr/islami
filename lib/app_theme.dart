@@ -22,6 +22,21 @@ class AppTheme {
           fontSize: 30,
           fontWeight: FontWeight.bold
       ),
+      titleMedium: GoogleFonts.elMessiri(
+          color: AppColors.blackColor,
+          fontSize: 25,
+          fontWeight: FontWeight.w600,
+      ),
+      titleSmall: GoogleFonts.inter(
+          color: AppColors.blackColor,
+          fontSize: 25,
+          fontWeight: FontWeight.w400
+      ),
+      bodySmall: GoogleFonts.inter(
+          color: AppColors.blackColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w400
+      ),
     )
   );
 }
