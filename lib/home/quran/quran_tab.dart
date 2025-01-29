@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami/app_colors.dart';
 import 'package:islami/home/quran/sura_name.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class QurranTab extends StatelessWidget {
   static List<String> suraName = [
@@ -138,22 +139,22 @@ class QurranTab extends StatelessWidget {
             height: 10,
           ),
           Divider(
-            color: AppColors.primaryColor,
+            color: AppColors.primaryDarkColor,
             thickness: 3,
           ),
           Text(
-            "Sura Name",
+            AppLocalizations.of(context)!.sura_name,
             style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
           Divider(
-            color: AppColors.primaryColor,
+            color: AppColors.primaryDarkColor,
             thickness: 3,
           ),
           Expanded(
             child: ListView.separated(
               separatorBuilder: (context, index) => Divider(
-                color: AppColors.primaryColor,
+                color: AppColors.primaryDarkColor,
                 thickness: 1,
               ),
               itemCount: suraName.length,

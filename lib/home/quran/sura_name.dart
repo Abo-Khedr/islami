@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami/app_colors.dart';
 import 'package:islami/home/quran/quran_model.dart';
 import 'package:islami/home/quran/sura_details.dart';
 
@@ -15,7 +16,9 @@ class SuraName extends StatelessWidget {
       },
       child: Text(
         suraList[index],
-        style: Theme.of(context).textTheme.titleSmall,
+        style: Theme.of(context).textTheme.titleSmall!.copyWith(
+          color: AppColors.whiteColor,
+        ),
         textAlign: TextAlign.center,
       ),
     );;

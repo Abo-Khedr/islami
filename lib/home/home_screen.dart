@@ -4,6 +4,10 @@ import 'package:islami/home/hadeth/hadeth_tab.dart';
 import 'package:islami/home/quran/quran_tab.dart';
 import 'package:islami/home/radio/radio_tab.dart';
 import 'package:islami/home/sebha/sebha_tab.dart';
+import 'package:islami/home/settings/settings_tab.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:islami/provider/app_config_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "Home Screen";
@@ -19,25 +23,33 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Stack(
       children: [
-        Image.asset(
-          "assets/images/bg3.png",
-          width: double.infinity,
-          height: double.infinity,
-          fit: BoxFit.fill,
-        ),
+        provider.appTheme == ThemeMode.light
+            ? Image.asset(
+                "assets/images/bg3.png",
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              )
+            : Image.asset(
+                "assets/images/dark_bg.png",
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.fill,
+              ),
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-              "Islami",
+              AppLocalizations.of(context)!.app_title,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
-            showUnselectedLabels: false,
+            selectedItemColor: AppColors.blackColor,
             currentIndex: selectedItem,
             onTap: (index) {
               setState(() {
@@ -46,37 +58,40 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             items: [
               BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/images/quran.png",
-                    height: 49,
-                    width: 51,
+                  icon: ImageIcon(
+                    AssetImage(
+                      "assets/images/quran.png",
+                    ),
                   ),
-                  backgroundColor: AppColors.primaryColor,
-                  label: "Quran"),
+                  //backgroundColor: AppColors.primaryColor,
+                  label: AppLocalizations.of(context)!.quran),
               BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/images/hadeth.png",
-                    height: 49,
-                    width: 51,
+                  icon: ImageIcon(
+                    AssetImage(
+                      "assets/images/hadeth.png",
+                    ),
                   ),
-                  backgroundColor: AppColors.primaryColor,
-                  label: "Ahadeth"),
+                  //backgroundColor: AppColors.primaryColor,
+                  label: AppLocalizations.of(context)!.ahadeth),
               BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/images/sebha.png",
-                    height: 49,
-                    width: 51,
+                  icon: ImageIcon(
+                    AssetImage(
+                      "assets/images/sebha.png",
+                    ),
                   ),
-                  backgroundColor: AppColors.primaryColor,
-                  label: "Sebha"),
+                  //backgroundColor: AppColors.primaryColor,
+                  label: AppLocalizations.of(context)!.sebha),
               BottomNavigationBarItem(
-                  icon: Image.asset(
-                    "assets/images/radio.png",
-                    height: 49,
-                    width: 51,
+                  icon: ImageIcon(AssetImage("assets/images/radio.png"),),
+                  //backgroundColor: AppColors.primaryColor,
+                  label: AppLocalizations.of(context)!.radio),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.settings,
+                    size: 30,
                   ),
-                  backgroundColor: AppColors.primaryColor,
-                  label: "Radio"),
+                  //backgroundColor: AppColors.primaryColor,
+                  label: AppLocalizations.of(context)!.settings),
             ],
           ),
           body: tabs[selectedItem],
@@ -90,5 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
     HadethTab(),
     SebhaTab(),
     RadioTab(),
+    SettingsTab()
   ];
 }

@@ -1,30 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:islami/app_colors.dart';
-import 'package:islami/home/quran/item_sura_details.dart';
-import 'package:islami/home/quran/quran_model.dart';
+import 'package:islami/home/hadeth/hadeth.dart';
+import 'package:islami/home/hadeth/hadeth_tab.dart';
+import 'package:islami/home/hadeth/item_hadeth_details.dart';
 import 'package:islami/provider/app_config_provider.dart';
 import 'package:provider/provider.dart';
 
-class SuraDetails extends StatefulWidget {
-  static const String routeName = "Sura Details";
+class HadethDetails extends StatelessWidget {
+  static const String routeName = "Hadeth Details";
 
-  SuraDetails({super.key});
-
-  @override
-  State<SuraDetails> createState() => _SuraDetailsState();
-}
-
-class _SuraDetailsState extends State<SuraDetails> {
-  List<String> verses = [];
+  const HadethDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
-    final arg = ModalRoute.of(context)!.settings.arguments as Quran;
-    if (verses.isEmpty) {
-      loadFile(arg.index);
-    }
+    final arg = ModalRoute.of(context)!.settings.arguments as HadethModel;
     return Stack(
       children: [
         provider.appTheme == ThemeMode.light
@@ -44,38 +34,34 @@ class _SuraDetailsState extends State<SuraDetails> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             title: Text(
-              arg.suraName,
+              arg.title,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
-          body: verses.isEmpty
-              ? Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.primaryColor,
-                  ),
-                )
-              : Container(
+          body: Container(
                   padding: EdgeInsets.all(15),
                   margin: EdgeInsets.symmetric(
                       horizontal: MediaQuery.of(context).size.width * 0.07,
                       vertical: MediaQuery.of(context).size.height * 0.09),
                   decoration: BoxDecoration(
                       color: provider.appTheme == ThemeMode.light ?
-                      AppColors.whiteColor : AppColors.blueColor,
+                      AppColors.whiteColor :
+                      AppColors.blueColor,
                       borderRadius: BorderRadius.circular(25)),
                   child: ListView.separated(
                     separatorBuilder: (context, index) {
                       return Divider(
                         color: provider.appTheme == ThemeMode.light ?
-                        AppColors.primaryColor : AppColors.primaryDarkColor,
+                        AppColors.primaryColor :
+                        AppColors.primaryDarkColor,
                         thickness: 1,
                       );
                     },
-                    itemCount: verses.length,
+                    itemCount: arg.content.length,
                     itemBuilder: (context, index) {
-                      return ItemSuraDetails(
-                        content: verses[index],
-                        index: index,
+                      return ItemHadethDetails(
+                        content: arg.content,
+                        title: arg.title,
                       );
                     },
                   ),
@@ -83,15 +69,5 @@ class _SuraDetailsState extends State<SuraDetails> {
         ),
       ],
     );
-  }
-
-  void loadFile(int index) async {
-    String sura = await rootBundle.loadString('assets/files/${index + 1}.txt');
-    List<String> lines = sura.split("\n");
-    for (int i = 0; i < lines.length; i++) {
-      print(lines[i]);
-    }
-    verses = lines;
-    setState(() {});
   }
 }
