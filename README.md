@@ -1,16 +1,25 @@
-# islami
+# 📱 Islamic App
 
-A new Flutter project.
+A comprehensive Islamic mobile application offering a set of essential features for every Muslim user, designed with simplicity and elegance.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📖 **Full Quran** – Read the entire Quran with ease  
+- 📜 **Hadith Collection** – Access authentic prophetic sayings  
+- 🔁 **Tasbeeh Counter** – Digital tool for remembering Allah  
+- 📻 **Live Islamic Radio** – Stream Islamic content in real-time  
+- ⚙️ **Settings**:
+  - 🌐 **Language:** Switch between Arabic and English  
+  - 🎨 **Theming:** Toggle between **Dark Mode** and **Light Mode**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🚀 How to Run the App
+
+> The app runs directly on an Android Emulator.
+
+1. Open the project in **Android Studio**.
+2. Launch the **Android Emulator**.
+3. Click **Run** to install and open the app on the emulator.
